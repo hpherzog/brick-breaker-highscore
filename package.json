@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db-sync": "node bin/db-sync.js",
-    "postinstall": "npm run db-sync"
+    "postinstall": "npm run db-sync && cp cfg/index.template.js cfg/index.js"
   },
   "author": "",
   "license": "ISC",
