@@ -5,12 +5,14 @@ var url = require('url');
 var _ = require('lodash');
 var $ = require('chai').assert;
 var logger = require('debug-logger')('server:db');
-var models = require('./models');
+var models = require('../models');
 
 class Db {
 
     constructor(options) {
+        $.deepProperty('db.dsn');
         this.dsn = _.get(options, 'db.dsn');
+        this.forceSync = _.get(options, 'db.forceSync', false);
     }
 
     init() {
@@ -35,7 +37,7 @@ class Db {
 
     sync() {
         return this.sequelize.sync({
-            force: false
+            force: this.forceSync
         });
     }
 
