@@ -22,4 +22,4 @@ npm-debug.log
 # Bower
 bower_components/
 
-dist/*.js
+cfg/index.js

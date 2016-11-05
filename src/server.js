@@ -3,7 +3,6 @@
 var http = require('http');
 var _ = require('lodash');
 var $ = require('chai').assert;
-var config = require('./config').config;
 var express = require('express');
 var logger = require('debug-logger')('server:http');
 
@@ -13,7 +12,8 @@ var logger = require('debug-logger')('server:http');
 class Server {
 
     constructor(options) {
-        this.port = _.get(options, 'http.port', 3000);
+        options = options || {};
+        this.port = _.get(options, 'http.port');
         this.http = null;
         this.app = express();
     }
@@ -33,6 +33,7 @@ class Server {
 
     initHttp() {
         return new Promise((resolve, reject)=>{
+            $.isNumber(this.port);
             this.http = http.createServer(this.app);
             this.http.listen(this.port, (err)=>{
                 if(_.isObject(err)) {
