@@ -13,7 +13,9 @@ class Server {
 
     constructor(options) {
         options = options || {};
-        this.port = _.get(options, 'http.port');
+        $.deepProperty(options, 'http.port');
+        $.isNotNaN(parseInt(options.http.port));
+        this.port = parseInt(options.http.port);
         this.http = null;
         this.app = express();
     }
