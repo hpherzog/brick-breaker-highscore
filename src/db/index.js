@@ -10,7 +10,7 @@ var models = require('../models');
 class Db {
 
     constructor(options) {
-        $.deepProperty('db.dsn');
+        $.deepProperty(options, 'db.dsn');
         this.dsn = _.get(options, 'db.dsn');
         this.forceSync = _.get(options, 'db.forceSync', false);
     }
