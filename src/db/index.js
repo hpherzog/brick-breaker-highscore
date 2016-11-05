@@ -26,7 +26,7 @@ class Db {
                     model.define({
                         sequelize: this.sequelize
                     });
-                    logger.info('Added model:', modelName);
+                    logger.info('Model:', modelName);
                 });
                 resolve();
             }).catch((err)=>{

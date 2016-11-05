@@ -5,6 +5,7 @@ var _ = require('lodash');
 var $ = require('chai').assert;
 var express = require('express');
 var logger = require('debug-logger')('server:http');
+var routes = require('./routes').routes;
 
 /**
  * @class
@@ -49,9 +50,12 @@ class Server {
 
     initExpress() {
         return new Promise((resolve, reject)=>{
-            this.app.all('/', (req, res)=>{
-                res.json({message:'Welcome ;-)'});
+
+            _.forEach(routes, (route)=>{
+                this.app[route[0]](route[1], route[2]());
+                logger.info('Route:', route);
             });
+
             logger.info('Configured express app');
             resolve();
         });

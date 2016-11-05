@@ -1,5 +1,6 @@
 'use strict';
 
+var $ = require('chai').assert;
 var _ = require('lodash');
 var Sequelize = require('sequelize');
 
@@ -33,7 +34,12 @@ module.exports.define = function define(options) {
         classMethods: {
 
             saveScore(options) {
+                $.property(options, 'name');
+                $.property(options, 'value');
+                $.property(options, 'level');
 
+                var Score = sequelize.models.score;
+                return Score.create(options);
             },
 
             getTop10(options) {
