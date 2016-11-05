@@ -25,6 +25,11 @@ module.exports.define = function define(options) {
             allowNull: false
         },
 
+        foo: {
+            type: Sequelize.BIGINT,
+            allowNull: false
+        },
+
         level: {
             type: Sequelize.INTEGER,
             allowNull: false
