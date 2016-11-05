@@ -10,7 +10,7 @@ module.exports.config = {
     },
 
     db: {
-        dsn: _.get(process.env, 'DB_DSN' , 'mysql://root:*****@localhost3306/brick_breaker_highscore')
+        dsn: _.get(process.env, 'DB_DSN' , 'mysql://root:123456@192.168.99.100:32768/brick_breaker_highscore')
     },
 
     app: {
