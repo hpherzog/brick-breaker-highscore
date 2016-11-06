@@ -15,6 +15,7 @@ module.exports.config = {
     },
 
     app: {
-        secret: _.get(process.env, 'APP_SECRET' , 'secret')
+        secret: _.get(process.env, 'APP_SECRET' , '123456'),
+        password: _.get(process.env, 'APP_PASSWORD' , '123456')
     }
 };

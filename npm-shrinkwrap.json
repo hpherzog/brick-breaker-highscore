@@ -465,6 +465,35 @@
         }
       }
     },
+    "passport": {
+      "version": "0.3.2",
+      "from": "passport@latest",
+      "resolved": "https://registry.npmjs.org/passport/-/passport-0.3.2.tgz",
+      "dependencies": {
+        "passport-strategy": {
+          "version": "1.0.0",
+          "from": "passport-strategy@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/passport-strategy/-/passport-strategy-1.0.0.tgz"
+        },
+        "pause": {
+          "version": "0.0.1",
+          "from": "pause@0.0.1",
+          "resolved": "https://registry.npmjs.org/pause/-/pause-0.0.1.tgz"
+        }
+      }
+    },
+    "passport-http": {
+      "version": "0.3.0",
+      "from": "passport-http@latest",
+      "resolved": "https://registry.npmjs.org/passport-http/-/passport-http-0.3.0.tgz",
+      "dependencies": {
+        "passport-strategy": {
+          "version": "1.0.0",
+          "from": "passport-strategy@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/passport-strategy/-/passport-strategy-1.0.0.tgz"
+        }
+      }
+    },
     "sequelize": {
       "version": "3.24.8",
       "from": "sequelize@latest",

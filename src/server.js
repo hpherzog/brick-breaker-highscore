@@ -8,6 +8,7 @@ var logger = require('debug-logger')('server:http');
 var routes = require('./routes').routes;
 var bodyParser = require('body-parser');
 var errorController = require('./controllers/error').controller;
+var auth = require('./auth');
 
 /**
  * @class
@@ -21,6 +22,7 @@ class Server {
         this.port = parseInt(options.http.port);
         this.http = null;
         this.app = express();
+        this.config = options;
     }
 
     init(options) {
@@ -53,6 +55,10 @@ class Server {
     initExpress(options) {
         return new Promise((resolve, reject)=>{
             $.property(options, 'db');
+            auth.init({
+                config: this.config
+            });
+            this.app.use(auth.middleware());
             this.app.use(bodyParser.json());
             _.forEach(routes, (route)=>{
                 this.app[route[0]](route[1], route[2]({
