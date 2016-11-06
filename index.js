@@ -8,7 +8,9 @@ var server = new Server(config);
 var db = new Db(config);
 
 db.init().then(()=>{
-    return server.init();
+    return server.init({
+        db: db
+    });
 }).catch((err)=>{
     logger.error(err);
     process.exit(1);

@@ -1,7 +1,6 @@
 'use strict';
 
 var $ = require('chai').assert;
-var _ = require('lodash');
 var Sequelize = require('sequelize');
 
 module.exports.define = function define(options) {
@@ -23,12 +22,24 @@ module.exports.define = function define(options) {
 
         value: {
             type: Sequelize.BIGINT,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                min: {
+                    args: 1,
+                    msg: 'min'
+                }
+            }
         },
 
         level: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                min: {
+                    args: 1,
+                    msg: 'min'
+                }
+            }
         }
     }, {
         classMethods: {

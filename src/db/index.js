@@ -48,6 +48,10 @@ class Db {
         }
         return url.format(parsedDsn);
     }
+
+    getModel(name) {
+        return this.sequelize.models[name];
+    }
 }
 
 module.exports.Db = Db;

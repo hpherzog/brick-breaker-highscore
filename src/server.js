@@ -6,6 +6,8 @@ var $ = require('chai').assert;
 var express = require('express');
 var logger = require('debug-logger')('server:http');
 var routes = require('./routes').routes;
+var bodyParser = require('body-parser');
+var errorController = require('./controllers/error').controller;
 
 /**
  * @class
@@ -21,10 +23,10 @@ class Server {
         this.app = express();
     }
 
-    init() {
+    init(options) {
         return new Promise((resolve, reject)=>{
-            this.initExpress().then(()=>{
-                return this.initHttp();
+            this.initExpress(options).then(()=>{
+                return this.initHttp(options);
             }).then(()=>{
                 logger.info('Started', this.http.address());
                 resolve();
@@ -48,14 +50,17 @@ class Server {
         });
     }
 
-    initExpress() {
+    initExpress(options) {
         return new Promise((resolve, reject)=>{
-
+            $.property(options, 'db');
+            this.app.use(bodyParser.json());
             _.forEach(routes, (route)=>{
-                this.app[route[0]](route[1], route[2]());
+                this.app[route[0]](route[1], route[2]({
+                    db: options.db
+                }));
                 logger.info('Route:', route);
             });
-
+            this.app.use(errorController());
             logger.info('Configured express app');
             resolve();
         });
