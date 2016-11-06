@@ -24,7 +24,7 @@ module.exports.define = function define(options) {
                 len: [3, 64]
             },
             set: function (name) {
-                this.setDataValue('name', _.trim(name));
+                this.setDataValue('name', _.trim(name).replace(/\s+/,' '));
             },
         },
 
@@ -32,16 +32,24 @@ module.exports.define = function define(options) {
             type: Sequelize.BIGINT,
             allowNull: false,
             validate: {
+                isInt: true,
                 min: 0
-            }
+            },
+            set: function (value) {
+                this.setDataValue('value', parseInt(value));
+            },
         },
 
         level: {
             type: Sequelize.INTEGER,
             allowNull: false,
             validate: {
+                isInt: true,
                 min: 1
-            }
+            },
+            set: function (level) {
+                this.setDataValue('level', parseInt(level));
+            },
         }
     }, {
         classMethods: {
