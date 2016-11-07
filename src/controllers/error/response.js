@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports.notFound = function notFound(res) {
-    res.status(404).json();
+    res.status(404).end();
 };
 
 module.exports.badRequest = function badRequest(res, reasons) {

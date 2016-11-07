@@ -7,7 +7,7 @@ var express = require('express');
 var logger = require('debug-logger')('server:http');
 var routes = require('./routes').routes;
 var bodyParser = require('body-parser');
-var errorController = require('./controllers/error').controller;
+var errorController = require('./controllers/error');
 var auth = require('./auth');
 
 /**
@@ -66,7 +66,8 @@ class Server {
                 }));
                 logger.info('Route:', route);
             });
-            this.app.use(errorController());
+            this.app.use(errorController.notFound());
+            this.app.use(errorController.error());
             logger.info('Configured express app');
             resolve();
         });

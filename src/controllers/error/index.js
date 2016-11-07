@@ -4,7 +4,13 @@ var logger = require('debug-logger')('server:error');
 var errorResponse = require('./response');
 var errorMap = require('./map');
 
-module.exports.controller = function controller (){
+module.exports.notFound = function notFound() {
+    return function(req, res, next) {
+        errorResponse.notFound(res);
+    }
+};
+
+module.exports.error = function error (){
     return function(err, req, res, next) {
         if (err.name === 'SequelizeValidationError') {
             errorResponse.badRequest(res, errorMap.sequelize.validationError(err));
