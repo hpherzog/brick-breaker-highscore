@@ -60,6 +60,7 @@ class Server {
             });
             this.app.use(auth.middleware());
             this.app.use(bodyParser.json());
+            this.app.use(bodyParser.urlencoded());
             _.forEach(routes, (route)=>{
                 this.app[route[0]](route[1], route[2]({
                     db: options.db
